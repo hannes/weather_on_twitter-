@@ -10,8 +10,8 @@ var replay ;
 
 client.stream('statuses/filter', {track:'@weather_sarea'}, function(stream) {
   stream.on('data', function(tweet) {
-    var seko = "@"+tweet.user.screen_name;
-    reply(seko);
+
+    reply(tweet);
     //console.log(tweet.coordinates);
   });
   stream.on('error', function(error) {
@@ -19,13 +19,16 @@ client.stream('statuses/filter', {track:'@weather_sarea'}, function(stream) {
   });
 });
 
-function reply(reply) {
-  console.log(reply);
-  client.post('statuses/update', {status:reply},  function(error, tweet, response){
+function reply(tweet) {
+  console.log(tweet);
+  var reply_text = {
+    status: "@"+tweet.user.screen_name + " reply test" ,
+    in_reply_to_status_id: tweet.id_str
+  };
+  client.post('statuses/update', reply_text ,  function(error, tweet, response){
     if(error) {
       console.error(error);
       throw error;
   }
-    console.log(tweet);  // Tweet body.
   });
 }
