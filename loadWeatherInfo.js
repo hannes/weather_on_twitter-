@@ -1,10 +1,10 @@
-var getJSON = require('simple-get-json');
+var getJSON = require("simple-get-json");
 
 var text = "weather day after tomorrow";
-var api_url = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+"damascus"+
-"&mode=json&units=kelvin&cnt=7&appid=e71a692c60560a41b511e26e96b775db";
 
-function displayWeatherInfo(api_url, whichDay) {
+function displayWeatherInfo(city, whichDay) {
+  var api_url = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+ city +
+  "&mode=json&units=kelvin&cnt=7&appid=e71a692c60560a41b511e26e96b775db";
   getJSON(api_url, function(weather){
     var date           = getDayAndDate(weather["list"][whichDay].dt * 1000);
     var location       = weather["city"].name + " (" + weather["city"].country + ")";
@@ -53,18 +53,3 @@ function getDayAndDate(dt) {
   }
   return day + " " + date ;
 }
-
-function whichDay(text) {
-  var textLowerCase = text.toLowerCase();
-  if(textLowerCase.indexOf("day after tomorrow") !== -1){
-    return 2;
-  }else {
-    if(textLowerCase.indexOf("tomorrow") !== -1){
-      return 1;
-    }else {
-      return 0;
-    }
-  }
-}
-
-displayWeatherInfo(api_url, whichDay(text));

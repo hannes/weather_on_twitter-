@@ -1,19 +1,31 @@
 fs = require('fs');
 
-var text = "give me weather of damascus";
+function getCityName(text) {
+  fs.readFile('./cities.txt', 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    text = text.toLowerCase().split(" ");
+    //var arrayOfText = text.split(" ");
+    for (var i=0; i<text.length; i++ ){
+      if(data.indexOf(text[i]) != -1){
+        console.log(text);
+        return text[i] ;
+      }
+    }
+  });
+}
 
-fs.readFile('./city.list.json', 'utf8', function (err,data) {
-  if (err) {
-    return console.log(err);
-  }
-  var arrayOfText = text.split(" ");
-  //var bufferString = data.split(" ");
 
-  for (var i=0; i<arrayOfText.length; i++ ){
-    var word= "\"" + arrayOfText[i] + "\"";
-    if(data.indexOf(word) != -1){
-      console.log(arrayOfText[i]);
+function whichDay(text) {
+  var textLowerCase = text.toLowerCase();
+  if(textLowerCase.indexOf("day after tomorrow") !== -1){
+    return 2;
+  }else {
+    if(textLowerCase.indexOf("tomorrow") !== -1){
+      return 1;
+    }else {
+      return 0;
     }
   }
-
-});
+}
