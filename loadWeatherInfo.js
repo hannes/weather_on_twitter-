@@ -53,3 +53,5 @@ function getDayAndDate(dt) {
   }
   return day + " " + date ;
 }
+
+exports.displayWeatherInfo = displayWeatherInfo;
