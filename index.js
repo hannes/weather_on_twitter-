@@ -21,7 +21,7 @@ function reply(tweet) {
   // var city = getCityName(tweet.text);
   // var day = whichDay(tweet.text);
   var reply_text = {
-    status: "@"+tweet.user.screen_name + " "+ loadWeatherInfo.displayWeatherInfo("amsterdam" , 0) ,
+    status: "@"+tweet.user.screen_name + " "+ displayWeatherInfo("amsterdam" , 0) ,
     in_reply_to_status_id: tweet.id_str
   };
   client.post('statuses/update', reply_text ,  function(error, tweet, response){
