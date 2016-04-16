@@ -2,7 +2,7 @@ var getJSON = require("simple-get-json");
 
 var text = "weather day after tomorrow";
 
-function displayWeatherInfo(city, whichDay) {
+function displayWeatherInfo(city, whichDay , callback) {
   var api_url = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+ city +
   "&mode=json&units=kelvin&cnt=7&appid=e71a692c60560a41b511e26e96b775db";
   getJSON(api_url, function(weather){
@@ -15,7 +15,7 @@ function displayWeatherInfo(city, whichDay) {
     var humidity       = weather["list"][whichDay].humidity ;
     var reply = date + ", " + location + ": " + temperature + " (" + maxMinTemp + ")" + ", "+ description + ", h: "+ humidity + "%" ;
     console.log(reply);
-    return reply ;
+    callback(repl) ;
   });
 }
 

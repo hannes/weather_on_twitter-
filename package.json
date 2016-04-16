@@ -6,11 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "sarea",
   "license": "BSD-2-Clause",
   "dependencies": {
     "nvm": "0.0.3",
     "twitter": "~1.2.5"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarea/weather_on_twitter-.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sarea/weather_on_twitter-/issues"
+  },
+  "homepage": "https://github.com/sarea/weather_on_twitter-#readme"
 }
