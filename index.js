@@ -15,11 +15,10 @@ client.stream('statuses/filter', {track:'@weather_sarea'}, function(stream) {
 
 function reply(tweet) {
   console.log(tweet);
-  //var cityAndDat = getCityAndDate.cityAndDat(tweet.text);
+  var cityAndDate = getCityAndDate.cityAndDate(tweet.text); // return an array [name of city , number from 0 to 2 (today , tomorrow , day after tomorrow)]
   var reply_text = {
-    status: "@"+tweet.user.screen_name + " " + loadWeatherInfo.displayWeatherInfo("amsterdam" , 0 , function(reply){
-      postReply(reply);
-    }) ,
+    status: "@"+tweet.user.screen_name + " " + loadWeatherInfo.displayWeatherInfo(cityAndDate[0] , cityAndDate[1]), // displayWeatherInfo take 2 parameter
+    //status: "@"+tweet.user.screen_name + " " + cityAndDate[0] + " " + cityAndDate[1] ,
     in_reply_to_status_id: tweet.id_str
   };
   client.post('statuses/update', reply_text ,  function(error, tweet, response){

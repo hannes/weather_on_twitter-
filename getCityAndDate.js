@@ -6,16 +6,22 @@ function getCityName(text) {
       return console.log(err);
     }
     text = text.toLowerCase().split(" ");
-    //var arrayOfText = text.split(" ");
+    var arrayOfResult = [];
     for (var i=0; i<text.length; i++ ){
-      if(data.indexOf(text[i]) != -1){
-        console.log(text);
-        return text[i] ;
+      if(data.indexOf("," + capitalize(text[i]) + "," ) !== -1){
+        console.log(text[i]);
+        return text[i];
+        //arrayOfResult.push(capitalize(text[i]));
       }
     }
+    //console.log(arrayOfResult);
+    //return arrayOfResult ;
   });
 }
 
+function capitalize(str) {
+  return str[0].toUpperCase() + str.slice(1);
+}
 
 function whichDay(text) {
   var textLowerCase = text.toLowerCase();
@@ -30,9 +36,9 @@ function whichDay(text) {
   }
 }
 
-function cityAndDat(text) {
-  var query = [getCityName(text), whchday(text)];
+function cityAndDate(text) {
+  var query = [getCityName(text), whichDay(text)];
   return query ;
 }
 
-exports.cityAndDat = cityAndDat ;
+exports.cityAndDate = cityAndDate ;
