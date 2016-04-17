@@ -1,6 +1,7 @@
 fs = require('fs');
 
-function getCityName(text) {
+function cityAndDate(text , test) {
+  var day = whichDay(text);
   fs.readFile('./cities.txt', 'utf8', function (err,data) {
     if (err) {
       return console.log(err);
@@ -10,7 +11,7 @@ function getCityName(text) {
     for (var i=0; i<text.length; i++ ){
       if(data.indexOf("," + capitalize(text[i]) + "," ) !== -1){
         console.log(text[i]);
-        return text[i];
+        test([text[i], day]) ;
         //arrayOfResult.push(capitalize(text[i]));
       }
     }
@@ -36,9 +37,5 @@ function whichDay(text) {
   }
 }
 
-function cityAndDate(text) {
-  var query = [getCityName(text), whichDay(text)];
-  return query ;
-}
 
 exports.cityAndDate = cityAndDate ;
